@@ -8,6 +8,6 @@ export default class FireActionStrategyGreen extends ActionStrategyFireBase {
     constructor() {
         super();
         this.hpDamage = 25;
-        this.repeatCount = 1;
+        this.repeatCount = 5;
     }
 }

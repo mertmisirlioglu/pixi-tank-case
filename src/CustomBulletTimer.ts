@@ -7,7 +7,7 @@ import Tank from "./Tank";
 import Grid from "./Grid";
 
 export default class CustomBulletTimer {
-    private readonly dtMs = 100; // Game logic delta time (16hz)
+    private readonly dtMs = 200; // Game logic delta time (16hz)
     private step = 0;
     private dtAccumulatorMs = 0;
     strategy: ActionStrategyFireBase;
@@ -44,7 +44,7 @@ export default class CustomBulletTimer {
         }
 
         for (let i = 0; i < this.strategy.repeatCount; i++) {
-            this.canBulletMove(bulletPos, i);
+            this.canBulletMove(bulletPos, i, true);
         }
 
         console.log("this bullets length", this.bullets.length);
@@ -74,6 +74,7 @@ export default class CustomBulletTimer {
 
     moveBullet(i: number) {
         if (this.bullets[i] == null) return;
+        if (this.step < i) return;
 
         const oldGrid = Game.Instance.world.gridArr[this.bullets[i].arrX][this.bullets[i].arrY];
 
@@ -82,7 +83,7 @@ export default class CustomBulletTimer {
         if (!this.canBulletMove(nextGrid, i)) return;
     }
 
-    canBulletMove(grid: Grid | null, i: number) {
+    canBulletMove(grid: Grid | null, i: number, isCheck?: boolean) {
         if (grid == null || grid.holdingObject) {
             this.killBullet(i);
             if (grid?.holdingObject?.hasOwnProperty("hp")) {
@@ -90,6 +91,8 @@ export default class CustomBulletTimer {
             }
             return false;
         }
+        if (isCheck) return;
+
         const bulletGrid = Game.Instance.world.gridArr[this.bullets[i].arrX][this.bullets[i].arrY];
         if (bulletGrid.holdingObject == this.bullets[i]) {
             grid.changeHoldingObject(bulletGrid);
