@@ -1,6 +1,5 @@
-import Tank from "./Tank";
+import { Point } from "pixi.js";
 
 export default interface IActionStrategy {
-    receiver: Tank | undefined;
-    execute(x: number, y: number): void;
+    execute(direction?: Point): void;
 }

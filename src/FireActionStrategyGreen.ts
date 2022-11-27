@@ -1,10 +1,13 @@
-import IActionStrategy from "./IActionStrategy";
-import Tank from "./Tank";
+import Game from "./Game";
+import ActionStrategyFireBase from "./ActionStrategyFireBase";
 
-export default class FireActionStrategyGreen implements IActionStrategy {
-    receiver: Tank | undefined;
+export default class FireActionStrategyGreen extends ActionStrategyFireBase {
+    hpDamage: number;
+    repeatCount: number;
 
-    execute(): void {
-        return;
+    constructor() {
+        super();
+        this.hpDamage = 25;
+        this.repeatCount = 1;
     }
 }

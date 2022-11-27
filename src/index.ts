@@ -10,7 +10,7 @@ const gameHeight = 600;
 
 console.log(`Welcome from pixi-typescript-boilerplate ${VERSION}`);
 
-export const app = new Application({
+const app = new Application({
     backgroundColor: 0x000000,
     width: gameWidth,
     height: gameHeight,
@@ -23,7 +23,7 @@ window.onload = async (): Promise<void> => {
 
     resizeCanvas();
 
-    new Game();
+    new Game(app);
 };
 
 async function loadGameAssets(): Promise<void> {

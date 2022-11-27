@@ -1,9 +1,12 @@
 import GameObject from "./GameObject";
-import { Sprite, Texture } from "pixi.js";
+import { Point, Sprite, Texture } from "pixi.js";
 import { constants } from "./Constants";
+import Game from "./Game";
 
 export default class Grid extends GameObject {
-    private _holdingObject: GameObject | undefined;
+    private _holdingObject!: GameObject;
+
+
 
     constructor(arrX: number, arrY: number) {
         super();
@@ -28,7 +31,24 @@ export default class Grid extends GameObject {
         this._holdingObject = value;
     }
 
+    changeHoldingObject(oldGrid: Grid) {
+        this.holdingObject = oldGrid._holdingObject;
+        oldGrid.resetHoldingObject();
+    }
+
     resetHoldingObject() {
-        this._holdingObject = undefined;
+        this._holdingObject = null as unknown as GameObject;
+    }
+
+    getNextGrid(direction: Point) {
+        if (
+            this.arrX + direction.x >= 0 &&
+            this.arrX + direction.y < constants.width - 1 &&
+            this.arrY + direction.y >= 0 &&
+            this.arrY + direction.y < constants.height - 1
+        )
+            return Game.Instance.world.gridArr[this.arrX + direction.x][this.arrY + direction.y];
+        else
+            return null;
     }
 }

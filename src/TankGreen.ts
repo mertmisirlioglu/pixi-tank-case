@@ -9,11 +9,15 @@ export default class TankGreen extends Tank {
         const sprite = new Sprite(Texture.from("tank_green.png"));
         sprite.scale.x = -1;
         this.setSprite(sprite);
+
+        const bulletSprite = new Sprite(Texture.from("tank_green_bullet.png"));
+        this.bulletSprite = bulletSprite;
+
         this.setDefaultStrategies();
     }
 
     setDefaultStrategies() {
         this.fireAction.strategy = new FireActionStrategyGreen();
-        this.moveAction.strategy = new MoveActionStrategyStandard(this);
+        this.moveAction.strategy = new MoveActionStrategyStandard();
     }
 }

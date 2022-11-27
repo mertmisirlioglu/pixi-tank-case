@@ -1,5 +1,5 @@
 import { Container, IDestroyOptions, Sprite } from "pixi.js";
-import { app } from "./index";
+import Game from "./Game";
 
 class Transformer {
     gameObject: GameObject;
@@ -64,7 +64,7 @@ class GameObject extends Container {
 
         this.addChild(sprite);
 
-        app.stage.addChild(this);
+        Game.Instance.app.stage.addChild(this);
     }
 
     get arrY(): number {
@@ -80,6 +80,10 @@ class GameObject extends Container {
 
     set arrX(value: number) {
         this._arrX = value;
+    }
+
+    getGrid() {
+        return Game.Instance.world.gridArr[this._arrX][this.arrY];
     }
 
     destroy(options: IDestroyOptions) {
