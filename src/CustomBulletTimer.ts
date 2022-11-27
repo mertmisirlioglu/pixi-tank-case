@@ -5,9 +5,10 @@ import { Point, Sprite, Texture, Ticker } from "pixi.js";
 import ActionStrategyFireBase from "./ActionStrategyFireBase";
 import Tank from "./Tank";
 import Grid from "./Grid";
+import Hay from "./Hay";
 
 export default class CustomBulletTimer {
-    private readonly dtMs = 200; // Game logic delta time (16hz)
+    private readonly dtMs = 50; // Game logic delta time (16hz)
     private step = 0;
     private dtAccumulatorMs = 0;
     strategy: ActionStrategyFireBase;
@@ -85,12 +86,14 @@ export default class CustomBulletTimer {
 
     canBulletMove(grid: Grid | null, i: number, isCheck?: boolean) {
         if (grid == null || grid.holdingObject) {
-            this.killBullet(i);
-            if (grid?.holdingObject?.hasOwnProperty("hp")) {
-                console.log("damage");
+            if (grid?.holdingObject instanceof Hay) {
+                grid?.holdingObject.getHit(this.bullets[i].hpDamage);
             }
+            this.killBullet(i);
+
             return false;
         }
+
         if (isCheck) return;
 
         const bulletGrid = Game.Instance.world.gridArr[this.bullets[i].arrX][this.bullets[i].arrY];

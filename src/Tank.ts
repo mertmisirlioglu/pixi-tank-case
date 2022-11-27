@@ -17,13 +17,6 @@ export default class Tank extends GameObject {
         this.actions = [];
         this.moveAction = new Move();
         this.fireAction = new Fire();
-        this.direction = new Point(0, 0);
-    }
-
-    getActionFromName(actionName: string) {
-        this.actions.forEach((action) => {
-            if (action.actionName == actionName) return action;
-        });
-        return undefined;
+        this.direction = new Point(1, 0);
     }
 }

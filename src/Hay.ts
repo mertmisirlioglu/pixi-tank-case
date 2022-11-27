@@ -2,6 +2,7 @@ import GameObject from "./GameObject";
 import IDestroyable from "./IDestroyable";
 import { IObstacle } from "./IObstacle";
 import { Sprite, Texture } from "pixi.js";
+import Game from "./Game";
 
 export default class Hay extends GameObject implements IDestroyable, IObstacle {
     hp: number;
@@ -13,5 +14,14 @@ export default class Hay extends GameObject implements IDestroyable, IObstacle {
         this.obstacleName = "Hay";
         const sprite = new Sprite(Texture.from("hay.png"));
         this.setSprite(sprite);
+    }
+
+    getHit(hp: number): void {
+        this.hp -= hp;
+
+        if (this.hp <= 0){
+            this.getGrid().resetHoldingObject();
+            Game.Instance.app.stage.removeChild(this);
+        }
     }
 }

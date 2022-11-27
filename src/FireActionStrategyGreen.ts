@@ -1,5 +1,5 @@
-import Game from "./Game";
 import ActionStrategyFireBase from "./ActionStrategyFireBase";
+import { constants } from "./Constants";
 
 export default class FireActionStrategyGreen extends ActionStrategyFireBase {
     hpDamage: number;
@@ -7,7 +7,7 @@ export default class FireActionStrategyGreen extends ActionStrategyFireBase {
 
     constructor() {
         super();
-        this.hpDamage = 25;
-        this.repeatCount = 5;
+        this.hpDamage = constants.greenBulletDamage;
+        this.repeatCount = constants.greenFireRepeat;
     }
 }

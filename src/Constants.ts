@@ -7,8 +7,8 @@ export const constants = {
     bulletPoolAmount: 100,
     greenBulletDamage: 25,
     blueBulletDamage: 20,
-    redBulletDamage: 15,
+    redBulletDamage: 10,
     greenFireRepeat: 1,
-    blueFireRepeat: 2,
-    redFireRepeat: 3,
+    blueFireRepeat: 3,
+    redFireRepeat: 2,
 };
