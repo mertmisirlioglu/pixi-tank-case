@@ -1,9 +1,9 @@
-import Grid from "./Grid";
-import { constants } from "./Constants";
-import Hay from "./Hay";
-import Wall from "./Wall";
+import Grid from "../objects/Grid";
+import { constants } from "../helpers/Constants";
+import Hay from "../objects/Hay";
+import Wall from "../objects/Wall";
 import GameObject from "./GameObject";
-import TankGreen from "./TankGreen";
+import TankGreen from "../objects/TankGreen";
 
 export default class GridWorld {
     gridArr: Grid[][];

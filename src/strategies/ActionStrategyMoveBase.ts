@@ -1,6 +1,6 @@
-import IActionStrategy from "./IActionStrategy";
-import { constants } from "./Constants";
-import Game from "./Game";
+import IActionStrategy from "../interfaces/IActionStrategy";
+import { constants } from "../helpers/Constants";
+import Game from "../Game";
 import { Point } from "pixi.js";
 
 export default class ActionStrategyMoveBase implements IActionStrategy {

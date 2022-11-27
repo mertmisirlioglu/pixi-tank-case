@@ -1,7 +1,7 @@
-import GameObject from "./GameObject";
+import GameObject from "../core/GameObject";
 import { Point, Sprite, Texture } from "pixi.js";
-import { constants } from "./Constants";
-import Game from "./Game";
+import { constants } from "../helpers/Constants";
+import Game from "../Game";
 
 export default class Grid extends GameObject {
     private _holdingObject!: GameObject;

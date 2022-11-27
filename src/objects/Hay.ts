@@ -1,8 +1,8 @@
-import GameObject from "./GameObject";
-import IDestroyable from "./IDestroyable";
-import { IObstacle } from "./IObstacle";
+import GameObject from "../core/GameObject";
+import IDestroyable from "../interfaces/IDestroyable";
+import { IObstacle } from "../interfaces/IObstacle";
 import { Sprite, Texture } from "pixi.js";
-import Game from "./Game";
+import Game from "../Game";
 
 export default class Hay extends GameObject implements IDestroyable, IObstacle {
     hp: number;

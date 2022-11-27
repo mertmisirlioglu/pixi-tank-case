@@ -1,11 +1,11 @@
-import GridWorld from "./GridWorld";
-import TankGreen from "./TankGreen";
-import Tank from "./Tank";
-import TankBlue from "./TankBlue";
-import TankRed from "./TankRed";
+import GridWorld from "./core/GridWorld";
+import TankGreen from "./objects/TankGreen";
+import Tank from "./objects/Tank";
+import TankBlue from "./objects/TankBlue";
+import TankRed from "./objects/TankRed";
 import { Application } from "pixi.js";
-import { Direction } from "./Direction";
-import BulletObjectPool from "./BulletObjectPool";
+import { Direction } from "./helpers/Direction";
+import BulletObjectPool from "./helpers/BulletObjectPool";
 
 export default class Game {
     static Instance: Game;

@@ -1,4 +1,4 @@
-import Bullet from "./Bullet";
+import Bullet from "../objects/Bullet";
 import { constants } from "./Constants";
 
 export default class BulletObjectPool {

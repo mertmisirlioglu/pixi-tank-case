@@ -1,7 +1,7 @@
 import Tank from "./Tank";
 import { Sprite, Texture } from "pixi.js";
-import MoveActionStrategyStandard from "./MoveActionStrategyStandard";
-import FireActionStrategyRed from "./FireActionStrategyRed";
+import MoveActionStrategyStandard from "../strategies/MoveActionStrategyStandard";
+import FireActionStrategyRed from "../strategies/FireActionStrategyRed";
 
 export default class TankRed extends Tank {
     constructor() {

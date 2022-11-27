@@ -1,5 +1,5 @@
 import { Container, IDestroyOptions, Sprite } from "pixi.js";
-import Game from "./Game";
+import Game from "../Game";
 
 class Transformer {
     gameObject: GameObject;

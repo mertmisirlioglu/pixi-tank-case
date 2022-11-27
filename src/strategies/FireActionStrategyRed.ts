@@ -1,5 +1,5 @@
 import ActionStrategyFireBase from "./ActionStrategyFireBase";
-import { constants } from "./Constants";
+import { constants } from "../helpers/Constants";
 
 export default class FireActionStrategyRed extends ActionStrategyFireBase {
     hpDamage: number;

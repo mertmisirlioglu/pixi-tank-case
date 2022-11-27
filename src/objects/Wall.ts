@@ -1,5 +1,5 @@
-import GameObject from "./GameObject";
-import { IObstacle } from "./IObstacle";
+import GameObject from "../core/GameObject";
+import { IObstacle } from "../interfaces/IObstacle";
 import { Sprite, Texture } from "pixi.js";
 
 export default class Wall extends GameObject implements IObstacle {

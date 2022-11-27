@@ -1,4 +1,4 @@
-import GameObject from "./GameObject";
+import GameObject from "../core/GameObject";
 import { Sprite } from "pixi.js";
 
 export default class Bullet extends GameObject {

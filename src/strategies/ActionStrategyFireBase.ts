@@ -1,10 +1,10 @@
-import IActionStrategy from "./IActionStrategy";
-import Game from "./Game";
-import Bullet from "./Bullet";
-import BulletObjectPool from "./BulletObjectPool";
-import Tank from "./Tank";
-import Grid from "./Grid";
-import CustomBulletTimer from "./CustomBulletTimer";
+import IActionStrategy from "../interfaces/IActionStrategy";
+import Game from "../Game";
+import Bullet from "../objects/Bullet";
+import BulletObjectPool from "../helpers/BulletObjectPool";
+import Tank from "../objects/Tank";
+import Grid from "../objects/Grid";
+import FireController from "../controller/FireController";
 
 export default class ActionStrategyFireBase implements IActionStrategy {
     hpDamage: number;
@@ -22,7 +22,7 @@ export default class ActionStrategyFireBase implements IActionStrategy {
     execute(): void {
         this.tank = Game.Instance.tank;
         this.gridArray = Game.Instance.world.gridArr;
-        new CustomBulletTimer(this);
+        new FireController(this);
     }
 
 }

@@ -1,6 +1,6 @@
 import { Application, Loader, Texture, AnimatedSprite, Sprite } from "pixi.js";
 import "./style.css";
-import GridWorld from "./GridWorld";
+import GridWorld from "./core/GridWorld";
 import Game from "./Game";
 
 declare const VERSION: string;

@@ -1,13 +1,13 @@
-import Game from "./Game";
-import Bullet from "./Bullet";
-import BulletObjectPool from "./BulletObjectPool";
+import Game from "../Game";
+import Bullet from "../objects/Bullet";
+import BulletObjectPool from "../helpers/BulletObjectPool";
 import { Point, Sprite, Texture, Ticker } from "pixi.js";
-import ActionStrategyFireBase from "./ActionStrategyFireBase";
-import Tank from "./Tank";
-import Grid from "./Grid";
-import Hay from "./Hay";
+import ActionStrategyFireBase from "../strategies/ActionStrategyFireBase";
+import Tank from "../objects/Tank";
+import Grid from "../objects/Grid";
+import Hay from "../objects/Hay";
 
-export default class CustomBulletTimer {
+export default class FireController {
     private readonly dtMs = 50; // Game logic delta time (16hz)
     private step = 0;
     private dtAccumulatorMs = 0;

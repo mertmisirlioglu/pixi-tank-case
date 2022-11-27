@@ -1,7 +1,7 @@
-import GameObject from "./GameObject";
-import IAction from "./IAction";
-import Fire from "./Fire";
-import Move from "./Move";
+import GameObject from "../core/GameObject";
+import IAction from "../interfaces/IAction";
+import Fire from "../actions/Fire";
+import Move from "../actions/Move";
 import { Point, Sprite } from "pixi.js";
 
 export default class Tank extends GameObject {
