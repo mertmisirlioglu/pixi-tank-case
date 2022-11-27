@@ -14,6 +14,7 @@ export default class Game {
     tanks: Tank[];
     currentTankIndex = 0;
     world: GridWorld;
+    fireCooldown = 0;
     constructor(app: Application) {
         Game.Instance = this;
         this.app = app;
@@ -55,7 +56,8 @@ export default class Game {
             this.changeTank();
         }
 
-        if (event.key === " ") {
+        if (event.key === " " && this.app.ticker.lastTime > this.fireCooldown ) {
+            this.fireCooldown = this.app.ticker.lastTime + 300;
             this.tank.fireAction.strategy?.execute();
         }
     }

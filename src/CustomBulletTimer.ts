@@ -4,9 +4,10 @@ import BulletObjectPool from "./BulletObjectPool";
 import { Point, Sprite, Texture, Ticker } from "pixi.js";
 import ActionStrategyFireBase from "./ActionStrategyFireBase";
 import Tank from "./Tank";
+import Grid from "./Grid";
 
 export default class CustomBulletTimer {
-    private readonly dtMs = 1000 / 16; // Game logic delta time (16hz)
+    private readonly dtMs = 100; // Game logic delta time (16hz)
     private step = 0;
     private dtAccumulatorMs = 0;
     strategy: ActionStrategyFireBase;
@@ -30,21 +31,22 @@ export default class CustomBulletTimer {
         this.bullets = [];
         let bullet: Bullet;
 
-        const startPosX = this.tank.arrX + this.tank.direction.x;
-        const startPosY = this.tank.arrY + this.tank.direction.y;
-        const bulletPos = Game.Instance.world.gridArr[startPosX][startPosY];
-        if (bulletPos.holdingObject) {
-            return;
-        }
+        const bulletPos = this.tank.getGrid().getNextGrid(this.direction);
+        if (bulletPos == null) return;
 
         for (let i = 0; i < this.strategy.repeatCount; i++) {
             bullet = BulletObjectPool.Instance.getFromBulletPool();
             bullet.bulletSprite = this.tank.bulletSprite;
+            bulletPos.setToGridPosition(bullet);
 
-            bulletPos.holdingObject = bullet;
             bullet.hpDamage = this.strategy.hpDamage;
             this.bullets.push(bullet);
         }
+
+        for (let i = 0; i < this.strategy.repeatCount; i++) {
+            this.canBulletMove(bulletPos, i);
+        }
+
         console.log("this bullets length", this.bullets.length);
     }
 
@@ -74,27 +76,32 @@ export default class CustomBulletTimer {
         if (this.bullets[i] == null) return;
 
         const oldGrid = Game.Instance.world.gridArr[this.bullets[i].arrX][this.bullets[i].arrY];
+
         const nextGrid = oldGrid.getNextGrid(this.direction);
 
-        if (nextGrid == null) {
-            this.killBullet(i);
-            return;
-        }
+        if (!this.canBulletMove(nextGrid, i)) return;
+    }
 
-        if (nextGrid.holdingObject) {
+    canBulletMove(grid: Grid | null, i: number) {
+        if (grid == null || grid.holdingObject) {
             this.killBullet(i);
-            if (nextGrid.holdingObject.hasOwnProperty("hp")) {
+            if (grid?.holdingObject?.hasOwnProperty("hp")) {
                 console.log("damage");
             }
-            return;
+            return false;
         }
-
-        nextGrid.changeHoldingObject(oldGrid);
+        const bulletGrid = Game.Instance.world.gridArr[this.bullets[i].arrX][this.bullets[i].arrY];
+        if (bulletGrid.holdingObject == this.bullets[i]) {
+            grid.changeHoldingObject(bulletGrid);
+        } else if (grid.holdingObject == null) {
+            grid.holdingObject = this.bullets[i];
+        }
+        return true;
     }
 
     killBullet(i: number) {
-        this.bullets[i].getGrid().resetHoldingObject();
         BulletObjectPool.Instance.returnToBulletPool(this.bullets[i]);
+        if (this.bullets[i].getGrid().holdingObject == this.bullets[i]) this.bullets[i].getGrid().resetHoldingObject();
         this.bullets[i] = null as unknown as Bullet;
         this.deadBulletCount++;
     }

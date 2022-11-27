@@ -6,8 +6,6 @@ import Game from "./Game";
 export default class Grid extends GameObject {
     private _holdingObject!: GameObject;
 
-
-
     constructor(arrX: number, arrY: number) {
         super();
         this.arrX = arrX;
@@ -23,12 +21,16 @@ export default class Grid extends GameObject {
     }
 
     set holdingObject(value: GameObject) {
+        this.setToGridPosition(value);
+        this._holdingObject = value;
+    }
+
+    setToGridPosition(value: GameObject) {
         value.setTransform(this.x + constants.spritePadding, this.y + constants.spritePadding);
         value.sprite.anchor.x = 0.5;
         value.sprite.anchor.y = 0.5;
         value.arrX = this.arrX;
         value.arrY = this.arrY;
-        this._holdingObject = value;
     }
 
     changeHoldingObject(oldGrid: Grid) {
@@ -48,7 +50,6 @@ export default class Grid extends GameObject {
             this.arrY + direction.y < constants.height - 1
         )
             return Game.Instance.world.gridArr[this.arrX + direction.x][this.arrY + direction.y];
-        else
-            return null;
+        else return null;
     }
 }
