@@ -1,6 +1,5 @@
 import Tank from "./Tank";
 import { Sprite, Texture } from "pixi.js";
-import FireActionStrategyGreen from "../strategies/FireActionStrategyGreen";
 import MoveActionStrategyStandard from "../strategies/MoveActionStrategyStandard";
 import FireActionStrategyBlue from "../strategies/FireActionStrategyBlue";
 

@@ -1,20 +1,13 @@
-import { Application, Loader, Texture, AnimatedSprite, Sprite } from "pixi.js";
+import { Application, Loader } from "pixi.js";
 import "./style.css";
-import GridWorld from "./core/GridWorld";
 import Game from "./Game";
+import { gameOptions } from "./gameConfig";
 
 declare const VERSION: string;
 
-const gameWidth = 800;
-const gameHeight = 800;
-
 console.log(`Welcome from pixi-typescript-boilerplate ${VERSION}`);
 
-const app = new Application({
-    backgroundColor: 0x000000,
-    width: gameWidth,
-    height: gameHeight,
-});
+const app = new Application(gameOptions);
 
 window.onload = async (): Promise<void> => {
     await loadGameAssets();
@@ -46,8 +39,8 @@ async function loadGameAssets(): Promise<void> {
 function resizeCanvas(): void {
     const resize = () => {
         app.renderer.resize(window.innerWidth, window.innerHeight);
-        app.stage.scale.x = window.innerWidth / gameWidth;
-        app.stage.scale.y = window.innerHeight / gameHeight;
+        // app.stage.scale.x = window.innerWidth / gameWidth;
+        // app.stage.scale.y = window.innerHeight / gameHeight;
     };
 
     resize();

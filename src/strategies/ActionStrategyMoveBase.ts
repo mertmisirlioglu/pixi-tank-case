@@ -59,7 +59,7 @@ export default class ActionStrategyMoveBase implements IActionStrategy {
         );
         const newMapPos: Point = new Point(-grid.x + screenCenter.x, -grid.y + screenCenter.y);
 
-        if (newMapPos.x < -Game.Instance.app.screen.width) {
+        if (newMapPos.x < -mapWidth + Game.Instance.app.screen.width) {
             newMapPos.x = -mapWidth + Game.Instance.app.screen.width;
         }
         if (newMapPos.x > 0) {

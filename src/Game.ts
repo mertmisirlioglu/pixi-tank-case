@@ -72,7 +72,13 @@ export default class Game {
         if (++this.currentTankIndex > 2) this.currentTankIndex = 0;
         this.tank = this.tanks[this.currentTankIndex];
         const strategy = this.tank.fireAction.strategy as ActionStrategyFireBase;
-        console.debug("--- Tank Change ---\n This tank can fire " + strategy.repeatCount + " bullet!\nEvery bullet has " + strategy.hpDamage + " HP damage")
+        console.debug(
+            "--- Tank Change ---\n This tank can fire " +
+                strategy.repeatCount +
+                " bullet!\nEvery bullet has " +
+                strategy.hpDamage +
+                " HP damage",
+        );
 
         this.tank.scale = oldTank.scale;
         this.tank.angle = oldTank.angle;

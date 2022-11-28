@@ -3,9 +3,6 @@ import IActionStrategy from "../interfaces/IActionStrategy";
 
 export default class Fire implements IAction {
     actionName = "Fire";
-    strategy: IActionStrategy | undefined;
+    strategy!: IActionStrategy;
 
-    constructor() {
-        this.strategy = undefined;
-    }
 }

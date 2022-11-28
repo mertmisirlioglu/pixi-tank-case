@@ -1,12 +1,9 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14e7ef42-5c90-44c8-a7ec-0b6e20c59735/deploy-status)](https://pixi-typescript-boilerplate.netlify.com) ![Windows build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/Windows%20build/badge.svg?branch=master) ![Linux build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/Linux%20build/badge.svg) ![MacOs build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/MacOs%20build/badge.svg)
+# pixi-tank-case
 
-# pixi-typescript-boilerplate
-
-## Beginner friendly template for pixi.js with [Webpack](https://webpack.js.org/)
+## Pixi.js Typescript 2D Tank Game
 
 ## Highlights
 
--   🔰 - Beginner friendly.
 -   🚀 - Blazing fast bundle times ( by using [swc](https://github.com/swc-project/swc) for transpiling ) 
 -   🛠 - Typescript + swc
 -   ✈️ - Live reload.
@@ -17,9 +14,10 @@
 
 ### Click on the green button "Use this template" on top of the repo or <br> <br> Simply copy paste this and start coding
 
-`git clone --depth=1 --branch=master https://github.com/yordan-kanchelov/pixi-typescript-boilerplate`
+`git clone https://github.com/mertmisirlioglu/pixi-tank-case`
 
-`rm -r -force ./pixi-typescript-boilerplate/.git`
+`cd ./pixi-tan-boilerplate`
+
 
 ## Commands:
 
@@ -29,4 +27,3 @@
 -   `npm run code-coverage` - generate code coverage report
 -   `npm run code-style-check` - run's eslint and prettier check on your code
 
-For vscode users - ctrl ( or ⌘ ) + shift + b will run the watch build as its set as default vscode task
