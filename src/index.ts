@@ -6,7 +6,7 @@ import Game from "./Game";
 declare const VERSION: string;
 
 const gameWidth = 800;
-const gameHeight = 600;
+const gameHeight = 800;
 
 console.log(`Welcome from pixi-typescript-boilerplate ${VERSION}`);
 
@@ -21,7 +21,7 @@ window.onload = async (): Promise<void> => {
 
     document.body.appendChild(app.view);
 
-    resizeCanvas();
+    // resizeCanvas();
 
     new Game(app);
 };

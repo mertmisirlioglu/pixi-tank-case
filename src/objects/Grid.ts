@@ -45,9 +45,9 @@ export default class Grid extends GameObject {
     getNextGrid(direction: Point) {
         if (
             this.arrX + direction.x >= 0 &&
-            this.arrX + direction.y < constants.width - 1 &&
+            this.arrX + direction.x < constants.width &&
             this.arrY + direction.y >= 0 &&
-            this.arrY + direction.y < constants.height - 1
+            this.arrY + direction.y < constants.height
         )
             return Game.Instance.world.gridArr[this.arrX + direction.x][this.arrY + direction.y];
         else return null;

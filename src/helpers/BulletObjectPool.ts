@@ -16,6 +16,7 @@ export default class BulletObjectPool {
         }
     }
 
+
     getFromBulletPool(): Bullet {
         for (let i = 0; i < this.bulletPool.length; i++) {
             if (!this.bulletPool[i].visible) {

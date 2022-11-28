@@ -18,9 +18,11 @@ export default class Hay extends GameObject implements IDestroyable, IObstacle {
 
     getHit(hp: number): void {
         this.hp -= hp;
+        console.debug("---- Hay Hit ---- \nHay get " + hp + " hit damage\nCurrent HP: --- " + this.hp + "---");
 
-        if (this.hp <= 0){
+        if (this.hp <= 0) {
             this.getGrid().resetHoldingObject();
+            console.debug("------ Hay Destroyed ---------");
             Game.Instance.app.stage.removeChild(this);
         }
     }

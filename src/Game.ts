@@ -6,6 +6,7 @@ import TankRed from "./objects/TankRed";
 import { Application } from "pixi.js";
 import { Direction } from "./helpers/Direction";
 import BulletObjectPool from "./helpers/BulletObjectPool";
+import ActionStrategyFireBase from "./strategies/ActionStrategyFireBase";
 
 export default class Game {
     static Instance: Game;
@@ -14,11 +15,12 @@ export default class Game {
     tanks: Tank[];
     currentTankIndex = 0;
     world: GridWorld;
-    fireCooldown = 0;
+    lastFire = 0;
     constructor(app: Application) {
         Game.Instance = this;
         this.app = app;
         this.world = new GridWorld();
+        this.app.stage.addChild(this.world);
         new BulletObjectPool();
 
         this.tank = new TankGreen();
@@ -32,6 +34,8 @@ export default class Game {
         const redTank = new TankRed();
         redTank.visible = false;
         this.tanks.push(redTank);
+
+
 
         this.world.gridArr[0][0].holdingObject = this.tank;
 
@@ -56,8 +60,8 @@ export default class Game {
             this.changeTank();
         }
 
-        if (event.key === " " && this.app.ticker.lastTime > this.fireCooldown ) {
-            this.fireCooldown = this.app.ticker.lastTime + 300;
+        if (event.key === " " && this.app.ticker.lastTime > this.lastFire) {
+            this.lastFire = this.app.ticker.lastTime + 300;
             this.tank.fireAction.strategy?.execute();
         }
     }
@@ -67,8 +71,9 @@ export default class Game {
         const currentGrid = this.world.gridArr[oldTank.arrX][oldTank.arrY];
         if (++this.currentTankIndex > 2) this.currentTankIndex = 0;
         this.tank = this.tanks[this.currentTankIndex];
-        console.log("old tank type", oldTank);
-        console.log("this tank type", this.tank);
+        const strategy = this.tank.fireAction.strategy as ActionStrategyFireBase;
+        console.debug("--- Tank Change ---\n This tank can fire " + strategy.repeatCount + " bullet!\nEvery bullet has " + strategy.hpDamage + " HP damage")
+
         this.tank.scale = oldTank.scale;
         this.tank.angle = oldTank.angle;
 

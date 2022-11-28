@@ -4,11 +4,13 @@ import Hay from "../objects/Hay";
 import Wall from "../objects/Wall";
 import GameObject from "./GameObject";
 import TankGreen from "../objects/TankGreen";
+import { Container } from "pixi.js";
 
-export default class GridWorld {
+export default class GridWorld extends Container{
     gridArr: Grid[][];
 
     constructor() {
+        super();
         this.gridArr = [];
         for (let i = 0; i < constants.width; i++) {
             this.gridArr[i] = [];

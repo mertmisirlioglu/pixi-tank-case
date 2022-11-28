@@ -8,7 +8,7 @@ import Grid from "../objects/Grid";
 import Hay from "../objects/Hay";
 
 export default class FireController {
-    private readonly dtMs = 50; // Game logic delta time (16hz)
+    private readonly dtMs = 100; // Game logic delta time (16hz)
     private step = 0;
     private dtAccumulatorMs = 0;
     strategy: ActionStrategyFireBase;
@@ -38,6 +38,8 @@ export default class FireController {
         for (let i = 0; i < this.strategy.repeatCount; i++) {
             bullet = BulletObjectPool.Instance.getFromBulletPool();
             bullet.bulletSprite = this.tank.bulletSprite;
+            bullet.bulletSprite.scale.x = 0.35;
+
             bulletPos.setToGridPosition(bullet);
 
             bullet.hpDamage = this.strategy.hpDamage;
@@ -47,11 +49,9 @@ export default class FireController {
         for (let i = 0; i < this.strategy.repeatCount; i++) {
             this.canBulletMove(bulletPos, i, true);
         }
-
-        console.log("this bullets length", this.bullets.length);
     }
 
-    tickGame(deltaTime: number) {
+    tickGame() {
         const { elapsedMS } = Game.Instance.app.ticker;
         this.dtAccumulatorMs += elapsedMS;
 
@@ -59,10 +59,8 @@ export default class FireController {
             this.dtAccumulatorMs -= this.dtMs;
             this.moveBullets();
             this.step++;
-            console.log("heyyo");
         }
         if (this.deadBulletCount >= this.bullets.length) {
-            console.log("öldü herkes");
             Game.Instance.app.ticker.remove(this.tickGame, this);
         }
     }
@@ -109,6 +107,7 @@ export default class FireController {
         BulletObjectPool.Instance.returnToBulletPool(this.bullets[i]);
         if (this.bullets[i].getGrid().holdingObject == this.bullets[i]) this.bullets[i].getGrid().resetHoldingObject();
         this.bullets[i] = null as unknown as Bullet;
+        console.debug("---- Bullet Destroyed ----");
         this.deadBulletCount++;
     }
 }
